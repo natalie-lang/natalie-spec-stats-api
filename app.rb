@@ -1,0 +1,25 @@
+require 'bundler/setup'
+require 'json'
+require 'time'
+require 'sinatra'
+
+STATS_PATH = File.expand_path('./public/stats.json', __dir__)
+SECRET = File.read('secret.txt').strip.freeze
+
+get '/stats' do
+  "POST stats to this endpoint with params 'secret' and 'stats' (JSON)"
+end
+
+post '/stats' do
+  if params[:secret].to_s != SECRET
+    halt 401, 'must pass "secret" param with correct secret'
+  end
+  unless params[:stats]
+    halt 400, 'must pass "stats" param with json string'
+  end
+  stats = JSON.parse(File.read(STATS_PATH)) rescue []
+  stats.unshift(date: Time.now.utc.strftime('%Y-%m-%dT%I:%M:%SZ'), stats: JSON.parse(params[:stats]))
+  File.write(STATS_PATH, stats.to_json)
+  status 201
+  'ok'
+end

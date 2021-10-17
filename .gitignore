@@ -1,0 +1,5 @@
+.bundle
+vendor
+tmp
+stats.json
+secret.txt
