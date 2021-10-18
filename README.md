@@ -1,6 +1,6 @@
 # Natalie Spec Stats API
 
-This little app has one job: accept stats POSTed from our nightly spec runner.
+This little app has one job: accept stats POSTed from [Natalie's](https://github.com/seven1m/natalie) nightly spec runner.
 
 ## Local Development
 
