@@ -1,6 +1,5 @@
 .bundle
 vendor
 tmp
-stats.json
-current.json
+public/*.json
 secret.txt

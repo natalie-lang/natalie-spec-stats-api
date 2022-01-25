@@ -4,6 +4,7 @@ require 'time'
 require 'sinatra'
 
 STATS_PATH = File.expand_path('./public/stats.json', __dir__)
+SELF_HOSTED_STATS_PATH = File.expand_path('./public/self_hosted_stats.json', __dir__)
 CURRENT_STATS_PATH = File.expand_path('./public/current.json', __dir__)
 SECRET = File.read('secret.txt').strip.freeze
 
@@ -28,6 +29,24 @@ post '/stats' do
 
   stats.unshift(date: current_time, stats: new_stats)
   File.write(STATS_PATH, stats.to_json)
+
+  status 201
+  'ok'
+end
+
+post '/self_hosted_stats' do
+  if params[:secret].to_s != SECRET
+    halt 401, 'must pass "secret" param with correct secret'
+  end
+  unless params[:stats]
+    halt 400, 'must pass "stats" param with json string'
+  end
+  stats = JSON.parse(File.read(SELF_HOSTED_STATS_PATH)) rescue []
+
+  new_stats = JSON.parse(params[:stats])
+  current_time = Time.now.utc.strftime('%Y-%m-%dT%I:%M:%SZ')
+  stats.unshift(date: current_time, stats: new_stats)
+  File.write(SELF_HOSTED_STATS_PATH, stats.to_json)
 
   status 201
   'ok'
