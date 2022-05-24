@@ -3,10 +3,10 @@ require 'json'
 require 'time'
 require 'sinatra'
 
-STATS_PATH = File.expand_path('./public/stats.json', __dir__)
-SELF_HOSTED_STATS_PATH = File.expand_path('./public/self_hosted_stats.json', __dir__)
-CURRENT_STATS_PATH = File.expand_path('./public/current.json', __dir__)
-SECRET = File.read('secret.txt').strip.freeze
+STATS_PATH = File.expand_path('./storage/stats.json', __dir__)
+SELF_HOSTED_STATS_PATH = File.expand_path('./storage/self_hosted_stats.json', __dir__)
+CURRENT_STATS_PATH = File.expand_path('./storage/current.json', __dir__)
+SECRET = ENV['SECRET'].freeze
 
 get '/stats' do
   "POST stats to this endpoint with params 'secret' and 'stats' (JSON)"
