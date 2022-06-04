@@ -8,6 +8,10 @@ SELF_HOSTED_STATS_PATH = File.expand_path('./storage/self_hosted_stats.json', __
 CURRENT_STATS_PATH = File.expand_path('./storage/current.json', __dir__)
 SECRET = ENV['SECRET'].freeze
 
+get '/' do
+  redirect 'https://natalie-lang.org'
+end
+
 get '/stats' do
   "POST stats to this endpoint with params 'secret' and 'stats' (JSON)"
 end
