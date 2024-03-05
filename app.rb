@@ -26,7 +26,7 @@ post '/stats' do
   stats = JSON.parse(File.read(STATS_PATH)) rescue []
 
   new_stats = JSON.parse(params[:stats])
-  current_time = Time.now.utc.strftime('%Y-%m-%dT%I:%M:%SZ')
+  current_time = Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
 
   details = new_stats.delete("Details")
   File.write(CURRENT_STATS_PATH, { date: current_time, stats: details }.to_json)
