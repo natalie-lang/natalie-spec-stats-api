@@ -12,6 +12,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rake (13.2.1)
     ruby2_keywords (0.0.5)
     sinatra (2.1.0)
       mustermann (~> 1.0)
@@ -28,11 +29,12 @@ PLATFORMS
 DEPENDENCIES
   puma
   rack-test
+  rake
   sinatra
   test-unit
 
 RUBY VERSION
-   ruby 3.3.0p0
+   ruby 3.3.5p100
 
 BUNDLED WITH
    2.2.22
