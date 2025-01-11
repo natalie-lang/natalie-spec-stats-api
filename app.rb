@@ -50,7 +50,7 @@ post '/self_hosted_stats' do
   stats = JSON.parse(File.read(SELF_HOSTED_STATS_PATH)) rescue []
 
   new_stats = JSON.parse(params[:stats])
-  current_time = Time.now.utc.strftime('%Y-%m-%dT%I:%M:%SZ')
+  current_time = Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
   stats.unshift(date: current_time, stats: new_stats)
   File.write(SELF_HOSTED_STATS_PATH, stats.to_json)
 
@@ -68,7 +68,7 @@ post '/perf_stats' do
   stats = JSON.parse(File.read(PERF_STATS_PATH)) rescue []
 
   new_stats = JSON.parse(params[:stats])
-  current_time = Time.now.utc.strftime('%Y-%m-%dT%I:%M:%SZ')
+  current_time = Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
   stats.unshift(date: current_time, stats: new_stats)
   File.write(PERF_STATS_PATH, stats.to_json)
 
