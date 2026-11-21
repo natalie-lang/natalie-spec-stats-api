@@ -1,27 +1,36 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    mustermann (1.1.1)
-      ruby2_keywords (~> 0.0.1)
-    nio4r (2.5.8)
-    power_assert (2.0.1)
-    puma (5.5.2)
+    base64 (0.3.0)
+    logger (1.7.0)
+    mustermann (3.1.1)
+    nio4r (2.7.5)
+    power_assert (3.1.0)
+    puma (8.1.2)
       nio4r (~> 2.0)
-    rack (2.2.26)
-    rack-protection (2.1.0)
-      rack
-    rack-test (1.1.0)
-      rack (>= 1.0, < 3)
-    rake (13.2.1)
-    ruby2_keywords (0.0.5)
-    sinatra (2.1.0)
-      mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
+    rack (3.2.9)
+    rack-protection (4.2.2)
+      base64 (>= 0.1.0)
+      logger (>= 1.6.0)
+      rack (>= 3.0.0, < 4)
+    rack-session (2.1.2)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0)
+    rack-test (2.3.0)
+      rack (>= 1.3)
+    rackup (2.3.1)
+      rack (>= 3)
+    rake (13.4.2)
+    sinatra (4.2.2)
+      logger (>= 1.6.0)
+      mustermann (~> 3.0)
+      rack (>= 3.0.0, < 4)
+      rack-protection (= 4.2.2)
+      rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    test-unit (3.5.0)
+    test-unit (3.7.8)
       power_assert
-    tilt (2.0.10)
+    tilt (2.9.0)
 
 PLATFORMS
   ruby
@@ -29,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   puma
   rack-test
+  rackup
   rake
   sinatra
   test-unit
