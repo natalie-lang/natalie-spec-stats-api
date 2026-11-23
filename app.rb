@@ -3,6 +3,11 @@ require 'json'
 require 'time'
 require 'sinatra'
 
+# CI sends URL-encoded spec reports larger than Rack's 4 MiB default.
+Rack::Utils.default_query_parser = Rack::QueryParser.make_default(
+  Rack::Utils.param_depth_limit, bytesize_limit: 16 * 1024 * 1024
+)
+
 STATS_PATH = File.expand_path('./storage/stats.json', __dir__)
 SELF_HOSTED_STATS_PATH = File.expand_path('./storage/self_hosted_stats.json', __dir__)
 PERF_STATS_PATH = File.expand_path('./storage/perf_stats.json', __dir__)
